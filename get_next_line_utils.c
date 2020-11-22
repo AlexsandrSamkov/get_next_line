@@ -6,7 +6,7 @@
 /*   By: weambros <weambros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 06:53:18 by weambros          #+#    #+#             */
-/*   Updated: 2020/11/18 06:55:55 by weambros         ###   ########.fr       */
+/*   Updated: 2020/11/21 17:54:49 by weambros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 && !s2)
 		return (0);
-	if (!(str = malloc(sizeof(char) + (s1 ? ft_strlen(s1) + 1 : 0)
-	+ (s2 ? ft_strlen(s2) + 1 : 0))))
+	if (!(str = malloc(sizeof(char) + 1 + (s1 ? ft_strlen(s1): 0)
+	+ (s2 ? ft_strlen(s2): 0 ))))
 		return (0);
 	pstr = str;
 	if (s1)
