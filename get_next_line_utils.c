@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: weambros <weambros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/18 06:53:18 by weambros          #+#    #+#             */
-/*   Updated: 2020/11/21 17:54:49 by weambros         ###   ########.fr       */
+/*   Created: 2020/11/23 08:48:46 by weambros          #+#    #+#             */
+/*   Updated: 2020/11/24 08:08:12 by weambros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 && !s2)
 		return (0);
-	if (!(str = malloc(sizeof(char) + 1 + (s1 ? ft_strlen(s1): 0)
-	+ (s2 ? ft_strlen(s2): 0 ))))
+	str = malloc(sizeof(char) * (1 + (s1 ? ft_strlen(s1) : 0)
+	+ (s2 ? ft_strlen(s2) : 0)));
+	if (!str)
 		return (0);
 	pstr = str;
 	if (s1)
@@ -43,32 +44,33 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-int		ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	int i;
+	char *str;
 
-	i = 0;
-	while (s[i])
+	str = (char*)s;
+	while (*str)
 	{
-		if (s[i] == c)
-			return (i);
-		i++;
+		if (*str == c)
+			return (str);
+		str++;
 	}
-	return (-1);
+	if (*str == c)
+		return (str);
+	return (0);
 }
 
-char	*ft_strdup(const char *s1, size_t len, size_t start, int flag)
+char	*ft_strdup(const char *s1)
 {
 	char	*s;
 	size_t	i;
 
 	i = 0;
-	flag == 0 ? (len = ft_strlen(s1)) : (len);
-	if (!(s = malloc(sizeof(char) * (len + 1 - start))))
+	if (!(s = (char*)malloc(sizeof(char) * (ft_strlen(s1) + 1))))
 		return (0);
-	while (i + start < len && s1[i + start] != '\0')
+	while (s1[i] != '\0')
 	{
-		s[i] = s1[i + start];
+		s[i] = s1[i];
 		i++;
 	}
 	s[i] = '\0';
